@@ -216,30 +216,26 @@ static struct platform_device android_usb_device = {
 
 #if defined(CONFIG_AMLOGIC_SPI_NOR)
 static struct mtd_partition spi_partition_info[] = {
-/* Hide uboot partition
         {
                 .name = "uboot",
                 .offset = 0,
                 .size = 0x3e000,
         },
-//*/
 	{
 		.name = "ubootenv",
 		.offset = 0x3e000,
 		.size = 0x2000,
 	},
-/* Hide recovery partition
         {
                 .name = "recovery",
                 .offset = 0x40000,
-                .size = 0x1c0000,
+                .size = 0x3c0000,
         },
-//*/
 // Add a partition for uboot update 
         {
                 .name = "ubootwhole",
                 .offset = 0,
-                .size = 0x200000,
+                .size = 0x400000,
         },
 };
 
@@ -649,8 +645,9 @@ static struct mtd_partition normal_partition_info_1G_OR_MORE[] =
 		.offset = 8*1024*1024,
 		.size=8*1024*1024,
     },
+/* Second Recovery */
     {
-        .name = "recovery",
+        .name = "recovery_second",
         .offset = 16*1024*1024,
         .size = 8*1024*1024,
     },
@@ -1500,7 +1497,8 @@ static void __init eth_pinmux_init(void)
 
 static void __init device_pinmux_init(void )
 {
-	clearall_pinmux();
+	printk("device_pinmux_init(): clearall_pinmux();\n");
+	//clearall_pinmux();
 
 	/* other deivce power on */
 	/* GPIOA_200e_bit4..usb/eth/YUV power on */
@@ -1508,11 +1506,13 @@ static void __init device_pinmux_init(void )
 	//set_gpio_val(PREG_EGPIO,1<<4,1);
 
 	/* uart port A */
-	uart_set_pinmux(UART_PORT_A,UART_A_GPIO_B2_B3);
+	printk("device_pinmux_init(): Port A, B2_B3\n");
+	//uart_set_pinmux(UART_PORT_A,UART_A_GPIO_B2_B3);
 
 #ifndef CONFIG_I2C_SW_AML
 	/* uart port B */
-	uart_set_pinmux(UART_PORT_B,UART_B_GPIO_C13_C14);
+	printk("device_pinmux_init(): Port B, C13_C14\n");
+	//uart_set_pinmux(UART_PORT_B,UART_B_GPIO_C13_C14);
 	//uart_set_pinmux(UART_PORT_B,UART_B_TCK_TDO);
 #endif
 
