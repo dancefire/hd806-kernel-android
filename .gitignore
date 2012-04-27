@@ -58,6 +58,14 @@ usr/gen_init_cpio
 usr/initramfs_data.cpio
 usr/initramfs_data.cpio.lzma
 vmlinux
+.missing-syscalls.d
+.tmp_System.map
+.tmp_kallsyms1.S
+.tmp_kallsyms2.S
+.tmp_versions/
+.tmp_vmlinux1
+.tmp_vmlinux2
+.version
 
 # Source Navigator
 SNDB*
