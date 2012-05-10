@@ -1498,7 +1498,7 @@ static void __init eth_pinmux_init(void)
 static void __init device_pinmux_init(void )
 {
 	printk("device_pinmux_init(): clearall_pinmux();\n");
-	//clearall_pinmux();
+	clearall_pinmux();
 
 	/* other deivce power on */
 	/* GPIOA_200e_bit4..usb/eth/YUV power on */
@@ -1507,11 +1507,12 @@ static void __init device_pinmux_init(void )
 
 	/* uart port A */
 	printk("device_pinmux_init(): Port A, B2_B3\n");
-	//uart_set_pinmux(UART_PORT_A,UART_A_GPIO_B2_B3);
+	uart_set_pinmux(UART_PORT_A,UART_A_GPIO_B2_B3);
 
 #ifndef CONFIG_I2C_SW_AML
 	/* uart port B */
-	printk("device_pinmux_init(): Port B, C13_C14\n");
+	printk("device_pinmux_init(): Port B, E18_E19\n");
+	uart_set_pinmux(UART_PORT_B, UART_B_GPIO_E18_E19);
 	//uart_set_pinmux(UART_PORT_B,UART_B_GPIO_C13_C14);
 	//uart_set_pinmux(UART_PORT_B,UART_B_TCK_TDO);
 #endif
