@@ -227,7 +227,7 @@ static struct mtd_partition spi_partition_info[] = {
 		.size = 0x2000,
 	},
         {
-                .name = "recovery",
+                .name = "recovery_spi",
                 .offset = 0x40000,
                 .size = 0x3c0000,
         },
@@ -647,7 +647,7 @@ static struct mtd_partition normal_partition_info_1G_OR_MORE[] =
     },
 /* Second Recovery */
     {
-        .name = "recovery_second",
+        .name = "recovery",
         .offset = 16*1024*1024,
         .size = 8*1024*1024,
     },
